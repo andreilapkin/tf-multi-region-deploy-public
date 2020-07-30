@@ -1,0 +1,14 @@
+ on:
+   push:
+     branches:
+       - master
+ name: release-please
+ jobs:
+   release-please:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: lancedikson/release-please-action@tmp-patch-release-please-version
+         with:
+           token: ${{ secrets.GITHUB_TOKEN }}
+           release-type: terraform-module
+           package-name: tf-multi-region-deploy-public
