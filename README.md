@@ -1,7 +1,6 @@
 # tf-multi-region-deploy-public
 Allows to organise centralised management in different regions using global vars and region- or project-specific options.
 
-
 ### Prerequisites ###
 - Install terraform: `https://learn.hashicorp.com/terraform/getting-started/install.html`
 - Create `~/.aws/config`
@@ -19,10 +18,10 @@ aws_secret_access_key = XXXXXXXXXXXX
 - Create key pair(s) in target regions `https://docs.aws.amazon.com/ground-station/latest/ug/create-ec2-ssh-key-pair.html` or upload your own
 
 ### Structure
-`/`                                                 - root folder
-`/main.tf`                                          - defines regions modules and passes global variables to them
-`/main_vars.tf`                                     - defines global variables
-`terraform.tf`                                      - you can use it for remote terraform state in S3 bucket or simply delete and use local storage
+`/`                                                 - root folder  
+`/main.tf`                                          - defines regions modules and passes global variables to them  
+`/main_vars.tf`                                     - defines global variables  
+`terraform.tf`                                      - you can use it for remote terraform state in S3 bucket or simply  delete and use local storage\
 ```
 terraform {
   backend "s3" {
@@ -34,9 +33,9 @@ terraform {
 }
 ```
 
-`/region_name/`                                     - module with region definitions
-`/region_name/region_name.tf`                       - defines project modules in tihs region and passes global- and region-specific variables to them
-`/region_name/region_name_vars.tf`                  - region vars assembled with global vars
+`/region_name/`                                     - module with region definitions  
+`/region_name/region_name.tf`                       - defines project modules in tihs region and passes global- and region-specific variables to them  
+`/region_name/region_name_vars.tf`                  - region vars assembled with global vars  
 ```
 # Set here your region name, vpc id in this region and a key pair associated with it
 
@@ -50,6 +49,6 @@ terraform {
   }
 ```
 
-`/region_name/project_name/`                        - module with project definitions in this region
-`/region_name/project_name/*.tf`                    - sets deploment options for your resources
-`/region_name/project_name/project_name_vars.tf`    - consumes region vars and gets all the subnets available to this region
+`/region_name/project_name/`                        - module with project definitions in this region  
+`/region_name/project_name/*.tf`                    - sets deploment options for your resources  
+`/region_name/project_name/project_name_vars.tf`    - consumes region vars and gets all the subnets available to this region  
